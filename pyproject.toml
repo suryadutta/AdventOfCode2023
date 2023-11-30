@@ -1,0 +1,64 @@
+[project]
+description = "Generic template for Python projects / jobs / libraries"
+name = "canary-python"
+version = "0.0.1"
+dependencies = [
+]
+
+[project.scripts]
+main-task = "src.main:run_main_task"
+
+[build-system]
+requires = [
+    "setuptools>=68.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*"]
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    "_build",
+    "build",
+    "dist",
+    ".venv",
+    "venv",
+]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+     # flake8-builtins
+    "A",
+    # flake8-bugbear
+    "B",
+    # flake8-comprehensions
+    "C4",
+    # pycodestyle
+    "E",
+    # pyflakes
+    "F",
+    # isort
+    "I",
+    # flake-8-unused-arguments
+    "ARG",
+    # perflint
+    "PERF",
+    # pygrep-hooks
+    "PGH",
+    # pylint
+    "PL",
+    # ruff-exclusive checks
+    "RUF",
+    # flake8-simplify
+    "SIM",
+]
+
+[tool.pytest.ini_options]
+markers = [
+    "integration_test: tests that actually hit external systems",
+]

@@ -1,0 +1,6 @@
+**/*.*
+!Makefile
+!pyproject.toml
+!setup.cfg
+!requirements-dev.txt
+!**/*.py
