@@ -1,4 +1,4 @@
-IMAGE_URI := "canary-python:local"
+IMAGE_URI := "advent-of-code-2023:local"
 
 build_image:
 	echo "building image" && \
@@ -7,6 +7,17 @@ build_image:
 		-f ./Dockerfile \
 		-t "{{IMAGE_URI}}" \
 		.
+
+setup_env_dev:
+	pip install --upgrade pip
+	pip install --prefer-binary -r ./requirements-dev.txt
+
+setup-env:
+	pip install --upgrade pip
+	pip install .
+
+run: setup-env
+	PYTHONPATH="$${PWD}" python src/run.py
 
 coverage_report: test
 	@coverage html
@@ -19,10 +30,6 @@ format: setup_env_dev
 lint: setup_env_dev
 	ruff format . --check
 	ruff check . --no-fix
-
-setup_env_dev:
-	pip install --upgrade pip
-	pip install --prefer-binary -r ./requirements-dev.txt
 
 test: setup_env_dev
 	PYTHONPATH="`pwd`" pytest \

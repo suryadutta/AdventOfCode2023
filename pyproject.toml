@@ -1,12 +1,10 @@
 [project]
-description = "Generic template for Python projects / jobs / libraries"
-name = "canary-python"
+description = "Submissions for Advent of Code 2023"
+name = "AdventOfCode2023"
 version = "0.0.1"
 dependencies = [
+    "advent-of-code-data>=2.0.1"
 ]
-
-[project.scripts]
-main-task = "src.main:run_main_task"
 
 [build-system]
 requires = [
