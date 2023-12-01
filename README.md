@@ -1,65 +1,15 @@
-# Canary Python Project
+# Advent Of Code 2023
 
-A generic template project for writing Python tasks 
+Code for my submissions to Advent of Code 2023 using Python 3.12
 
-## Getting Started
+Heavily relies on the excellent AOCD package created by @wimglenn: https://github.com/wimglenn/advent-of-code-data
 
-### Recommended: Use `just`
-
-`just` is a command runner. 
-It is similar to `make`, but without some of the fun idiosyncrasies like `PHONY` or double escaping `$` 
-
-#### Installing `just`
-
-Installation instructions can be found at https://github.com/casey/just#installation
-
-For macOS + Homebrew, run
-
-```shell
-brew install just
-```
-
-#### Local development using `just`
+#### Local development
 
 Format code using:
 
 ```shell
-just format
-```
-
-Lint code using:
-
-```shell
-just lint
-```
-
-Run unit tests using:
-
-```shell
-just test
-```
-
-Run linting and testing in Docker (also useful for CI integrations):
-```shell
-just test_and_lint_in_docker
-```
-
-Run integration tests:
-
-```shell
-just integration-test
-```
-
-
-### Alternative: Use `make`
-
-If you would rather use `make`, this is supported as well:
-
-
-Format code using:
-
-```shell
-make test
+make format
 ```
 
 Lint code using:
@@ -83,4 +33,19 @@ Run integration tests:
 
 ```shell
 make integration-test
+```
+
+### Running code
+
+```shell
+AOC_DAY=1 make run
+```
+
+
+### Submitting solutions
+
+```shell
+AOC_DAY=1 \
+make submit_part_a \
+make submit_part_b
 ```

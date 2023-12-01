@@ -11,6 +11,10 @@ build_image:
 		-t "${IMAGE_URI}" \
 		.
 
+.PHONY: run
+run: setup-env
+	PYTHONPATH="$${PWD}" python src/run.py
+
 .PHONY: coverage_report
 coverage_report: test
 	@coverage html
@@ -52,23 +56,3 @@ test_and_lint_in_docker: build_image
 		--rm \
 		-t "${IMAGE_URI}" \
 		/bin/bash -c "apt-get update -y && apt-get install --no-install-recommends make && make setup_env_dev lint test"
-
-.PHONY: integration_test
-integration_test: build_image
-	echo "building image" && \
-    docker run \
-		--rm \
-    	--env LOGGING_LEVEL=10 \
-		-it "${IMAGE_URI}" \
-		main-task && \
-	echo "running integration tests" && \
-	docker run \
-		--rm \
-		-v $$(pwd)/Makefile:/app/Makefile \
-		-v $$(pwd)/requirements-dev.txt:/app/requirements-dev.txt \
-		-v $$(pwd)/tests:/app/tests \
-		--entrypoint="" \
-		--workdir /app \
-		-it "${IMAGE_URI}" \
-		/bin/bash -c "apt-get update -y && apt-get install --no-install-recommends make && make setup_env_dev && pytest -m 'integration_test' tests/" && \
-	echo "Done running integration tests"
