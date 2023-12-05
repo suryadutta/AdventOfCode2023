@@ -1,5 +1,6 @@
 import re
 from dataclasses import dataclass
+from typing import Iterator
 
 from src._logger import LOGGER
 from src.utils import get_data
@@ -9,6 +10,18 @@ from src.utils import get_data
 class Location:
     row: int
     col: int
+
+
+def yield_part_number_adjacent_locations(
+    line: str, row_num: int
+) -> Iterator[tuple[int, Location]]:
+    for num_match in re.finditer(r"\d+", line):
+        for location in {
+            Location(row=r, col=c)
+            for r in (row_num - 1, row_num, row_num + 1)
+            for c in range(num_match.start() - 1, num_match.end() + 1)
+        }:
+            yield int(num_match.group()), location
 
 
 def run_part_a() -> str:
@@ -24,15 +37,12 @@ def run_part_a() -> str:
     }
 
     part_numbers = [
-        int(num_match.group())
-        for r, line in enumerate(data)
-        for num_match in re.finditer(r"\d+", line)
-        for _location in {
-            Location(row=r, col=c)
-            for r in (r - 1, r, r + 1)
-            for c in range(num_match.start() - 1, num_match.end() + 1)
-        }
-        & symbols
+        part_number
+        for row_num, line in enumerate(data)
+        for part_number, location in yield_part_number_adjacent_locations(
+            line=line, row_num=row_num
+        )
+        if location in symbols
     ]
 
     return str(sum(part_numbers))
@@ -50,14 +60,12 @@ def run_part_b() -> str:
         if data[r][c] == "*"
     }
 
-    for r, line in enumerate(data):
-        for num_match in re.finditer(r"\d+", line):
-            for location in {
-                Location(row=r, col=c)
-                for r in (r - 1, r, r + 1)
-                for c in range(num_match.start() - 1, num_match.end() + 1)
-            } & gear_symbols_and_part_numbers.keys():
-                gear_symbols_and_part_numbers[location].append(int(num_match.group()))
+    for row_num, line in enumerate(data):
+        for part_number, location in yield_part_number_adjacent_locations(
+            line=line, row_num=row_num
+        ):
+            if location in gear_symbols_and_part_numbers:
+                gear_symbols_and_part_numbers[location].append(part_number)
 
     return str(
         sum(
