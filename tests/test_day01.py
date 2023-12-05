@@ -4,7 +4,6 @@ import pytest
 
 from src.day01 import (
     get_calibration_value_from_line,
-    get_calibration_value_from_line_with_numeric_words,
     run_part_a,
     run_part_b,
 )
@@ -15,7 +14,10 @@ from src.day01 import (
     [("1abc2", 12), ("pqr3stu8vwx", 38), ("a1b2c3d4e5f", 15), ("treb7uchet", 77)],
 )
 def test_get_calibration_value_from_line_no_numeric_words(line: str, expected: int):
-    assert get_calibration_value_from_line(line=line) == expected
+    assert (
+        get_calibration_value_from_line(line=line, parse_numeric_words=False)
+        == expected
+    )
 
 
 @pytest.mark.parametrize(
@@ -31,7 +33,9 @@ def test_get_calibration_value_from_line_no_numeric_words(line: str, expected: i
     ],
 )
 def test_get_calibration_value_from_line_with_numeric_words(line: str, expected: int):
-    assert get_calibration_value_from_line_with_numeric_words(line=line) == expected
+    assert (
+        get_calibration_value_from_line(line=line, parse_numeric_words=True) == expected
+    )
 
 
 @patch("src.day01.get_data")
