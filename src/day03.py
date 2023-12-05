@@ -20,6 +20,7 @@ def yield_part_number_adjacent_locations(
             Location(row=r, col=c)
             for r in (row_num - 1, row_num, row_num + 1)
             for c in range(num_match.start() - 1, num_match.end() + 1)
+            if r >= 0 and c >= 0
         }:
             yield int(num_match.group()), location
 
