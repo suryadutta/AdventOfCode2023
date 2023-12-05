@@ -35,9 +35,7 @@ def test_get_calibration_value_from_line_with_numeric_words(line: str, expected:
 
 
 @patch("src.utils.get_data")
-def test_run_part_a(mock_get_data, monkeypatch):
-    monkeypatch.setenv("AOC_DAY", "1")
-
+def test_run_part_a(mock_get_data):
     mock_get_data.return_value = [
         "1abc2",
         "pqr3stu8vwx",
@@ -50,9 +48,7 @@ def test_run_part_a(mock_get_data, monkeypatch):
 
 
 @patch("src.utils.get_data")
-def test_run_part_b(mock_get_data, monkeypatch):
-    monkeypatch.setenv("AOC_DAY", "1")
-
+def test_run_part_b(mock_get_data):
     mock_get_data.return_value = [
         "two1nine",
         "eightwothree",
