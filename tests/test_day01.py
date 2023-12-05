@@ -34,10 +34,8 @@ def test_get_calibration_value_from_line_with_numeric_words(line: str, expected:
     assert get_calibration_value_from_line_with_numeric_words(line=line) == expected
 
 
-@patch("src.utils.get_data")
-def test_run_part_a(mock_get_data, monkeypatch):
-    monkeypatch.setenv("AOC_DAY", "1")
-
+@patch("src.day01.get_data")
+def test_run_part_a(mock_get_data):
     mock_get_data.return_value = [
         "1abc2",
         "pqr3stu8vwx",
@@ -49,10 +47,8 @@ def test_run_part_a(mock_get_data, monkeypatch):
     assert answer == "142"
 
 
-@patch("src.utils.get_data")
-def test_run_part_b(mock_get_data, monkeypatch):
-    monkeypatch.setenv("AOC_DAY", "1")
-
+@patch("src.day01.get_data")
+def test_run_part_b(mock_get_data):
     mock_get_data.return_value = [
         "two1nine",
         "eightwothree",
