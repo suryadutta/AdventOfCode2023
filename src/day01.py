@@ -10,7 +10,6 @@ def get_calibration_value_from_line(line: str):
 
 
 NUMBERS_TEXT = {
-    "zero": 0,
     "one": 1,
     "two": 2,
     "three": 3,
@@ -40,7 +39,7 @@ def get_calibration_value_from_line_with_numeric_words(line: str):
         else NUMBERS_TEXT[all_numeric_matches[-1]]
     )
 
-    return int(f"{first_number}{last_number}")
+    return 10 * first_number + last_number
 
 
 def run_part_a() -> str:
@@ -60,3 +59,7 @@ def run_part_b() -> str:
             for line in get_data()
         )
     )
+
+
+if __name__ == "__main__":
+    run_part_b()
