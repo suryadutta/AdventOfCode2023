@@ -7,5 +7,5 @@ def run_part_a() -> str:
 
 
 def run_part_b() -> str:
-    LOGGER.info("Running code for Part A")
+    LOGGER.info("Running code for Part B")
     raise NotImplementedError

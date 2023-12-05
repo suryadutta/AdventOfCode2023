@@ -12,8 +12,16 @@ build_image:
 		.
 
 .PHONY: run
-run: setup-env
+run: setup_env
 	PYTHONPATH="$${PWD}" python src/run.py
+
+.PHONY: submit_part_a
+submit_part_a: setup_env
+	PYTHONPATH="$${PWD}" python src/submit.py a
+
+.PHONY: submit_part_b
+submit_part_b: setup_env
+	PYTHONPATH="$${PWD}" python src/submit.py b
 
 .PHONY: coverage_report
 coverage_report: test
@@ -29,6 +37,11 @@ format: setup_env_dev
 lint: setup_env_dev
 	ruff format . --check
 	ruff check . --no-fix
+
+.PHONY: setup_env
+setup_env:
+	pip install --upgrade pip
+	pip install .
 
 .PHONY: setup_env_dev
 setup_env_dev:

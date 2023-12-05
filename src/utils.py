@@ -1,14 +1,14 @@
 import os
 from typing import List
 
-DAY = int(os.environ["AOC_DAY"])
-YEAR = 2023
-
 
 def get_data() -> List[str]:
+    day = int(os.environ["AOC_DAY"])
+    year = 2023
+
     import aocd
 
-    return aocd.get_data(day=DAY, year=YEAR).splitlines()
+    return aocd.get_data(day=day, year=year).splitlines()
 
 
 def recursively_split_line_with_delimiters(line: str, delimiters: List[str]):
