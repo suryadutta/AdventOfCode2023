@@ -46,7 +46,3 @@ def run_part_b() -> str:
             for line in get_data()
         )
     )
-
-
-if __name__ == "__main__":
-    run_part_b()
