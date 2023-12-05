@@ -1,6 +1,7 @@
 import re
 
 from src._logger import LOGGER
+from src.utils import get_data
 
 
 def get_calibration_value_from_line(line: str):
@@ -44,14 +45,12 @@ def get_calibration_value_from_line_with_numeric_words(line: str):
 
 def run_part_a() -> str:
     LOGGER.info("Running code for Part A")
-    from src.utils import get_data
 
     return str(sum(get_calibration_value_from_line(line=line) for line in get_data()))
 
 
 def run_part_b() -> str:
     LOGGER.info("Running code for Part B")
-    from src.utils import get_data
 
     return str(
         sum(
@@ -59,7 +58,3 @@ def run_part_b() -> str:
             for line in get_data()
         )
     )
-
-
-if __name__ == "__main__":
-    run_part_b()
