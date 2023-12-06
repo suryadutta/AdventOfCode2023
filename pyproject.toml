@@ -4,7 +4,7 @@ name = "AdventOfCode2023"
 version = "0.0.1"
 dependencies = [
     "advent-of-code-data>=2.0.1",
-    "numpy"
+    "numpy>=1.26.2"
 ]
 
 [build-system]
